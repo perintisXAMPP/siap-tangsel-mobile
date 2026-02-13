@@ -100,3 +100,42 @@ export async function storageGet(relKey: string): Promise<{ key: string; url: st
     url: await buildDownloadUrl(baseUrl, key, apiKey),
   };
 }
+
+/**
+ * Generate unique file key dengan random suffix
+ */
+export function generateFileKey(userId: number, fileName: string, suffix?: string): string {
+  const timestamp = Date.now();
+  const random = Math.random().toString(36).substring(2, 8);
+  const finalSuffix = suffix || `${timestamp}-${random}`;
+  const cleanFileName = fileName.replace(/[^a-zA-Z0-9.-]/g, "_");
+  return `documents/${userId}/${cleanFileName}-${finalSuffix}`;
+}
+
+/**
+ * Validate file size
+ */
+export function validateFileSize(sizeInBytes: number, maxSizeInMB = 50): boolean {
+  const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
+  return sizeInBytes <= maxSizeInBytes;
+}
+
+/**
+ * Validate file type
+ */
+export function validateFileType(
+  mimeType: string,
+  allowedTypes = [
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-excel",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "image/jpeg",
+    "image/png",
+    "image/gif",
+    "text/plain",
+  ]
+): boolean {
+  return allowedTypes.includes(mimeType);
+}
