@@ -71,16 +71,6 @@ bash quick-start.sh
 git clone https://github.com/perintisXAMPP/siap-tangsel-mobile.git
 cd siap-tangsel-mobile
 
-# Jalankan quick start
-bash quick-start.sh
-
-# Jalankan server
-./start-dev.sh
-
-# Dapatkan IP dan akses dari browser
-./get-ip.sh
-
-
 
 ## 🏗️ Tech Stack
 
