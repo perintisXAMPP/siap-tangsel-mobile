@@ -1,0 +1,300 @@
+================================================================================
+  SIAP TANGSEL MOBILE - PANDUAN LANGKAH DEMI LANGKAH DI TERMUX
+================================================================================
+
+WAKTU TOTAL: ~30 menit
+
+================================================================================
+LANGKAH 1: DOWNLOAD TERMUX
+================================================================================
+
+1. Buka Google Play Store atau F-Droid di smartphone
+2. Cari: "Termux"
+3. Tap tombol "Install"
+4. Tunggu download selesai
+5. Tap "Open" atau buka aplikasi Termux dari home screen
+
+HASIL: Anda akan melihat terminal hitam dengan prompt "$"
+
+================================================================================
+LANGKAH 2: SETUP STORAGE (PENTING!)
+================================================================================
+
+Di Termux, ketik:
+
+  termux-setup-storage
+
+Akan ditanya:
+  "Allow Termux to access photos, media, and files on your device? [Y/n]"
+
+Ketik: Y
+Tekan: Enter
+
+HASIL: Termux sekarang bisa akses storage smartphone
+
+================================================================================
+LANGKAH 3: UPDATE SYSTEM
+================================================================================
+
+Ketik:
+
+  pkg update && pkg upgrade -y
+
+WAKTU: 2-5 menit
+
+Tunggu sampai selesai...
+
+HASIL: System sudah updated
+
+================================================================================
+LANGKAH 4: DOWNLOAD PROJECT
+================================================================================
+
+Pilih salah satu:
+
+OPSI A - Dari GitHub (Recommended):
+  git clone https://github.com/yourusername/siap-tangsel-mobile.git
+  cd siap-tangsel-mobile
+
+OPSI B - Dari ZIP File:
+  unzip siap-tangsel-mobile.zip
+  cd siap-tangsel-mobile
+
+HASIL: Anda sekarang di folder project
+
+================================================================================
+LANGKAH 5: JALANKAN INSTALASI OTOMATIS
+================================================================================
+
+Ketik:
+
+  bash quick-start.sh
+
+WAKTU: 15-25 menit
+
+Script akan:
+  ✓ Install Node.js
+  ✓ Install npm & pnpm
+  ✓ Install dependencies
+  ✓ Setup konfigurasi
+  ✓ Setup database (optional)
+  ✓ Create startup scripts
+
+SAAT DITANYA KONFIGURASI:
+
+1. "Install system packages?" → Ketik: y
+2. "Install npm tools?" → Ketik: y
+3. "Database URL?" → Masukkan atau tekan Enter
+4. "Manus App ID?" → Masukkan App ID Anda
+5. "JWT Secret?" → Tekan Enter (auto-generate)
+6. "Owner Open ID?" → Masukkan ID Anda
+7. "Owner Name?" → Masukkan nama atau tekan Enter
+8. "Forge API Key?" → Masukkan API key Anda
+9. "Setup database now?" → Ketik: y atau n
+
+HASIL: Instalasi selesai!
+
+================================================================================
+LANGKAH 6: JALANKAN SERVER
+================================================================================
+
+Ketik:
+
+  ./start-dev.sh
+
+TUNGGU sampai melihat:
+
+  Starting SIAP Tangsel Mobile (Development Mode)...
+  Server will run on http://0.0.0.0:3000
+
+  [2026-02-13T14:30:00.000Z] Server running on http://localhost:3000/
+
+PENTING: Jangan tutup terminal ini! Server harus tetap berjalan.
+
+HASIL: Server sudah berjalan di port 3000
+
+================================================================================
+LANGKAH 7: BUKA TERMINAL BARU
+================================================================================
+
+Di Termux, untuk membuka terminal baru:
+
+1. Tap tombol ≡ (menu) di bawah layar
+2. Pilih "New Session"
+3. Terminal baru akan terbuka
+
+HASIL: Anda sekarang punya 2 terminal:
+  - Terminal 1: Server berjalan
+  - Terminal 2: Untuk command lain
+
+================================================================================
+LANGKAH 8: DAPATKAN IP ADDRESS
+================================================================================
+
+Di terminal baru, ketik:
+
+  ./get-ip.sh
+
+AKAN MELIHAT:
+
+  Finding your Termux IP address...
+
+  192.168.1.105
+
+  Use this IP to access from smartphone:
+  http://192.168.1.105:3000
+
+CATAT IP ADDRESS INI! (Contoh: 192.168.1.105)
+
+HASIL: Anda tahu IP address Termux
+
+================================================================================
+LANGKAH 9: BUKA BROWSER DI SMARTPHONE
+================================================================================
+
+1. Buka browser di smartphone (Chrome, Firefox, dll)
+2. Di address bar, ketik: http://192.168.1.105:3000
+   (Ganti 192.168.1.105 dengan IP Anda dari langkah 8)
+3. Tekan Enter
+
+TUNGGU beberapa detik...
+
+HASIL: Aplikasi SIAP Tangsel Mobile terbuka di browser!
+
+================================================================================
+LANGKAH 10: LOGIN
+================================================================================
+
+Di halaman aplikasi:
+
+1. Klik tombol "Login dengan Manus"
+2. Anda akan diarahkan ke halaman Manus OAuth
+3. Masukkan username & password Manus Anda
+4. Klik "Authorize"
+
+HASIL: Anda sudah login!
+
+================================================================================
+LANGKAH 11: LIHAT DASHBOARD
+================================================================================
+
+Setelah login, Anda akan melihat Dashboard dengan:
+
+  ✓ Statistik Agenda
+  ✓ Statistik Disposisi
+  ✓ Upcoming Events
+  ✓ Menu untuk Agenda, Disposisi, Dokumen
+
+HASIL: Aplikasi siap digunakan!
+
+================================================================================
+LANGKAH 12: BUAT AGENDA PERTAMA (OPTIONAL)
+================================================================================
+
+1. Klik menu "Agenda"
+2. Klik tombol "Buat Agenda Baru"
+3. Isi form:
+   - Judul Agenda
+   - Deskripsi
+   - Tanggal & Waktu
+   - Lokasi
+   - Peserta
+4. Klik "Simpan"
+
+HASIL: Agenda pertama sudah dibuat!
+
+================================================================================
+LANGKAH 13: BACKUP DATABASE (PENTING!)
+================================================================================
+
+Di terminal Termux, ketik:
+
+  ./backup-db.sh
+
+AKAN MELIHAT:
+
+  Backing up database: siap_tangsel
+  ✓ Backup completed: backups/siap_tangsel_20260213_143022.sql
+
+HASIL: Database sudah di-backup
+
+================================================================================
+SELESAI! ✓
+================================================================================
+
+Anda sudah berhasil menjalankan SIAP Tangsel Mobile di Termux!
+
+RINGKASAN COMMAND PENTING:
+
+  ./start-dev.sh      → Jalankan server
+  ./get-ip.sh         → Lihat IP address
+  ./view-logs.sh      → Lihat log server
+  ./backup-db.sh      → Backup database
+  ./start-bg.sh       → Jalankan di background
+  Ctrl+C              → Stop server (di terminal server)
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+MASALAH 1: "Connection Refused" saat buka browser
+SOLUSI:
+  1. Pastikan server berjalan: netstat -tuln | grep 3000
+  2. Dapatkan IP yang benar: ./get-ip.sh
+  3. Pastikan smartphone & Termux di WiFi yang sama
+
+MASALAH 2: "Database Connection Failed"
+SOLUSI:
+  1. Edit .env.local: nano .env.local
+  2. Verifikasi DATABASE_URL
+  3. Jalankan: pnpm db:push
+
+MASALAH 3: "Out of Memory"
+SOLUSI:
+  1. Edit start-dev.sh: nano start-dev.sh
+  2. Ubah: NODE_OPTIONS="--max-old-space-size=256"
+  3. Jalankan: ./start-dev.sh
+
+MASALAH 4: "Port 3000 Already in Use"
+SOLUSI:
+  1. Edit .env.local: nano .env.local
+  2. Ubah: PORT="3001"
+  3. Jalankan: ./start-dev.sh
+
+================================================================================
+DOKUMENTASI LENGKAP
+================================================================================
+
+Untuk penjelasan lebih detail, baca:
+
+  - PANDUAN_TERMUX.md      → Panduan lengkap dengan penjelasan
+  - QUICK_START_STEPS.md   → 5 langkah cepat
+  - README-TERMUX.md       → Panduan Termux komprehensif
+  - SETUP_GUIDE.md         → Detailed setup guide
+  - INDEX.md               → Master index semua dokumentasi
+
+================================================================================
+TIPS PENTING
+================================================================================
+
+1. JANGAN TUTUP TERMINAL SERVER
+   Terminal yang menjalankan ./start-dev.sh harus tetap terbuka
+
+2. KEEP TERMUX AWAKE
+   Settings > Display > Screen timeout > Never
+
+3. BACKUP REGULAR
+   Jalankan ./backup-db.sh secara berkala
+
+4. GUNAKAN TERMINAL BARU
+   Untuk command lain, buka terminal baru (jangan di terminal server)
+
+5. MONITOR RESOURCE
+   Gunakan: top (tekan q untuk exit)
+
+================================================================================
+SELAMAT MENGGUNAKAN SIAP TANGSEL MOBILE! 🎉
+================================================================================
+
+Terakhir diupdate: 13 Februari 2026
+Status: Production Ready ✓
